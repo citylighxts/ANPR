@@ -25,7 +25,8 @@ The system integrates **YOLOv8** for robust object detection and **EasyOCR** for
 
 ## 📖 How to Use (Web / Streamlit Cloud)
 
-Once deployed, you can access the application via your browser.
+You can access the application via your browser here:
+[Streamlit Cloud link](https://anpr-pcv.streamlit.app)
 
 1.  **Upload Image:**
     * Upload a vehicle image (JPG/PNG).
@@ -58,7 +59,7 @@ Follow these steps to run the project on your local machine.
 
 1.  **Clone the Repository:**
     ```bash
-    git clone [https://github.com/citylighxts/ANPR.git](https://github.com/citylighxts/ANPR.git)
+    git clone https://github.com/citylighxts/ANPR.git
     cd ANPR
     ```
 
