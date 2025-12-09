@@ -1,118 +1,92 @@
-# 🚗 Indonesian ANPR System (YOLOv8 + EasyOCR)
+# 🚗 Implementasi Sistem Automatic Number Plate Recognition (ANPR) Indonesia
 
-![Python](https://img.shields.io/badge/Python-3.9%2B-blue)
-![Streamlit](https://img.shields.io/badge/Streamlit-App-red)
-![YOLOv8](https://img.shields.io/badge/Model-YOLOv8-green)
-![EasyOCR](https://img.shields.io/badge/OCR-EasyOCR-yellow)
+[![Python](https://img.shields.io/badge/Python-3.9%2B-blue)](https://www.python.org/)
+[![Streamlit](https://img.shields.io/badge/Streamlit-App-red)](https://streamlit.io/)
+[![YOLOv8](https://img.shields.io/badge/Model-YOLOv8-green)](https://ultralytics.com/)
+[![EasyOCR](https://img.shields.io/badge/OCR-EasyOCR-yellow)](https://github.com/JaidedAI/EasyOCR)
 
-This project is a Final Project implementation of an **Automatic Number Plate Recognition (ANPR)** system specifically designed for Indonesian vehicle license plates. It addresses common challenges in real-world scenarios, such as low resolution, shadows, and uneven lighting.
+## 📝 Deskripsi 
 
-The system integrates **YOLOv8** for robust object detection and **EasyOCR** for text recognition, wrapped in an interactive **Streamlit** web application. Users can manually tune preprocessing parameters (Threshold, Gamma, Cropping) in real-time to improve OCR accuracy on difficult images.
+Proyek ini merupakan **Final Project** implementasi **Sistem Automatic Number Plate Recognition (ANPR)** berbasis **Deep Learning**, yang dirancang secara spesifik untuk mengenali dan memverifikasi plat nomor kendaraan Indonesia. Fokus utama dari proyek ini adalah meningkatkan **Robustness** sistem terhadap tantangan pada skenario *real-world*, seperti variasi pencahayaan, *shadow*, dan resolusi gambar yang rendah.
 
----
-
-## 🌟 Key Features
-
-* **Robust Detection:** Utilizes a custom-trained `YOLOv8n` model to accurately localize license plates.
-* **Manual Preprocessing Control:** A unique feature allowing users to fine-tune image processing parameters when automatic OCR fails:
-    * **Manual Thresholding:** Adjust black/white binarization limits.
-    * **Gamma Correction:** Brighten dark/shadowed areas effectively.
-    * **Smart Cropping:** Remove license plate frames and expiration dates that confuse the OCR.
-    * **Auto Invert:** Automatically inverts colors (Black background to White) to match OCR requirements.
-* **Debug View:** Visualize exactly what the OCR engine "sees" (preprocessed crop) for easier troubleshooting.
+Metodologi yang diusulkan mengintegrasikan dua teknologi utama: **YOLOv8** untuk tahap *Object Detection* dan **EasyOCR** untuk tahap *Optical Character Recognition* (OCR). Seluruh sistem diimplementasikan dalam sebuah **Streamlit App** yang bersifat *interactive* bagi pengguna.
 
 ---
 
-## 📖 How to Use (Web / Streamlit Cloud)
+## ✨ Fitur 
 
-You can access the application via your browser here:
-[Streamlit Cloud link](https://anpr-pcv.streamlit.app)
+1.  **Pendekatan Multi-Model untuk Deteksi (YOLOv8):**
+    * Sistem ini memanfaatkan **dua model YOLOv8n** yang telah melalui proses *training* khusus, yaitu **`front.pt`** dan **`side.pt`**.
+    * Penggunaan model terpisah ini bertujuan untuk mengoptimalkan *Performance* dalam melokalisasi *Bounding Box* plat nomor dari berbagai *view angle* (sudut pandang depan dan samping).
 
-1.  **Upload Image:**
-    * Upload a vehicle image (JPG/PNG).
-    * If no image is uploaded, the system uses a default sample.
+2.  **Modul Interaktif Preprocessing dan Tuning:**
+    * Kami menyediakan *interface* Streamlit yang memungkinkan **Manual Tuning** terhadap parameter *Image Processing* ketika *Auto OCR* memberikan hasil yang tidak akurat. Fitur ini krusial untuk mitigasi *Noise*.
+    * **Manual Thresholding:** Penyesuaian batas binarisasi untuk mengoptimalkan kontras teks.
+    * **Gamma Correction:** Teknik *enhancement* untuk mencerahkan area *under-exposed* atau berbayangan.
+    * **Smart Cropping:** Fitur untuk menghilangkan *frame* atau *date stamp* pada plat yang dapat mengganggu *Accuracy* OCR.
 
-2.  **Click "Start Detection":**
-    * The system will localize the plate and attempt to read the text.
-
-3.  **Tuning (If the result is inaccurate):**
-    Use the **Sidebar (Left Panel)** to adjust image parameters:
-    * **Color Control:** Adjust the threshold until letters are **Bold Black** and background is **Clean White**.
-    * **Crop Frame:** Use sliders to remove black borders around the plate.
-    * **Gamma:** Increase gamma if the plate is covered in shadows.
-
-4.  **Validation:**
-    * **Green Box:** Valid license plate detected.
-    * **Yellow/Red Box:** Plate detected but text format is invalid (Requires tuning).
+3.  **Visualisasi Debug:**
+    * Tersedia **Debug View** yang menampilkan *crop* gambar hasil *preprocessing*. Hal ini membantu pengguna memverifikasi kualitas input yang diterima oleh mesin OCR.
 
 ---
 
-## 💻 Local Installation Guide
+## 📖 Prosedur Penggunaan Aplikasi Web
 
-Follow these steps to run the project on your local machine.
+Aplikasi *live deployment* dapat diakses melalui *link* berikut: [Streamlit Cloud link](https://anpr-pcv.streamlit.app)
 
-### Prerequisites
-* Python 3.8 or higher.
-* Git.
+1.  **Input Data:** Lakukan *Upload* gambar kendaraan (format JPG/PNG) melalui *interface*.
+2.  **Eksekusi:** Klik tombol "Start Detection" untuk memulai alur deteksi plat nomor dan *initial reading*.
+3.  **Tuning (Opsional):** Jika hasil pembacaan gagal atau tidak valid, akses **Sidebar** dan lakukan **Tuning** parameter *preprocessing* (Threshold, Crop Frame, Gamma) secara *real-time*.
+4.  **Verifikasi Hasil:** Hasil akan ditandai dengan kotak:
+    * **Hijau:** *Output* plat terdeteksi dan formatnya valid.
+    * **Kuning/Merah:** Deteksi berhasil, namun hasil *reading* OCR memerlukan *Tuning* lebih lanjut.
 
-### Installation Steps (macOS / Linux)
+---
 
-1.  **Clone the Repository:**
+## 💻 Panduan Instalasi Lokal
+
+Untuk menjalankan proyek ini di komputer lokal, ikuti *step-by-step* instalasi di bawah ini:
+
+### Prasyarat Sistem
+
+* Python versi 3.8 atau yang lebih tinggi.
+* Git harus sudah terinstal.
+
+### Tahapan Instalasi
+
+1.  **Clone Repositori:**
     ```bash
-    git clone https://github.com/citylighxts/ANPR.git
+    git clone [https://github.com/citylighxts/ANPR.git](https://github.com/citylighxts/ANPR.git)
     cd ANPR
     ```
-
-2.  **Create a Virtual Environment:**
+2.  **Inisiasi dan Aktivasi Virtual Environment:**
+    Kami sangat merekomendasikan penggunaan *Virtual Environment* untuk mengelola *Dependencies*.
     ```bash
     python3 -m venv venv
-    ```
-
-3.  **Activate the Environment:**
-    ```bash
+    
+    # Linux/macOS
     source venv/bin/activate
+    
+    # Windows
+    venv\Scripts\activate
     ```
-
-4.  **Install Dependencies:**
+3.  **Instalasi Dependencies:**
     ```bash
-    pip3 install -r requirements.txt
+    pip install -r requirements.txt
     ```
-
-5.  **Run the Application:**
+4.  **Deployment Aplikasi:**
     ```bash
     streamlit run app.py
     ```
 
-### Installation Steps (Windows)
-
-1.  Open Command Prompt (CMD) or PowerShell in the project folder.
-2.  Create environment: `python -m venv venv`
-3.  Activate: `venv\Scripts\activate`
-4.  Install: `pip install -r requirements.txt`
-5.  Run: `streamlit run app.py`
-
 ---
 
-## 🛠️ Tech Stack
+## 🛠️ Teknologi
 
-| Component | Technology | Description |
+| Komponen | Teknologi | Keterangan |
 | :--- | :--- | :--- |
-| **Language** | Python 3.9+ | Core logic. |
-| **GUI** | Streamlit | Web framework for interactive data apps. |
-| **Detection** | YOLOv8 (Ultralytics) | Object detection model for finding plates. |
-| **OCR** | EasyOCR | Optical Character Recognition engine. |
-| **Processing** | OpenCV | Image manipulation (Thresholding, Morphology, etc.). |
-
----
-
-## 📂 Project Structure
-
-```text
-.
-├── models/
-│   └── best.pt           
-├── images/
-│   └── truck.png         
-├── app.py                
-├── requirements.txt      
-└── README.md             
+| **Bahasa Pemrograman** | Python 3.9+ | *Core Language* untuk seluruh *Logic* sistem. |
+| **Antarmuka Pengguna** | Streamlit | *Framework* yang digunakan untuk *rapid deployment* antarmuka web interaktif. |
+| **Deteksi Objek** | YOLOv8 (Ultralytics) | *State-of-the-art model* untuk *detection* lokasi plat nomor. |
+| **Pengenalan Teks** | EasyOCR | Pustaka OCR yang efisien untuk mengekstraksi karakter dari plat. |
+| **Pemrosesan Gambar** | OpenCV | Pustaka *Computer Vision* untuk operasi *Preprocessing* seperti Thresholding dan *Morphology*. |
