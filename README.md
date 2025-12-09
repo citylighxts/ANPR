@@ -60,7 +60,6 @@ Untuk menjalankan proyek ini di komputer lokal, ikuti *step-by-step* instalasi d
     cd ANPR
     ```
 2.  **Inisiasi dan Aktivasi Virtual Environment:**
-    Kami sangat merekomendasikan penggunaan *Virtual Environment* untuk mengelola *Dependencies*.
     ```bash
     python3 -m venv venv
     
