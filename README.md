@@ -8,7 +8,7 @@
 ## Anggota Kelompok
 1. Hana Azizah Nurhadi - 5025231134
 2. Aqila Zahira Naia Puteri Arifin - 5025231138
-3. Muhammad Dawanis Baihaqi - 5025231177
+3. Muhammad Baihaqi Dawanis - 5025231177
 
 ## 📝 Deskripsi 
 
