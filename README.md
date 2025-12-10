@@ -5,6 +5,11 @@
 [![YOLOv8](https://img.shields.io/badge/Model-YOLOv8-green)](https://ultralytics.com/)
 [![EasyOCR](https://img.shields.io/badge/OCR-EasyOCR-yellow)](https://github.com/JaidedAI/EasyOCR)
 
+## Anggota Kelompok
+1. Hana Azizah Nurhadi - 5025231134
+2. Aqila Zahira Naia Puteri Arifin - 5025231138
+3. Muhammad Dawanis Baihaqi - 5025231177
+
 ## 📝 Deskripsi 
 
 Proyek ini merupakan **Final Project** implementasi **Sistem Automatic Number Plate Recognition (ANPR)** berbasis **Deep Learning**, yang dirancang secara spesifik untuk mengenali dan memverifikasi plat nomor kendaraan Indonesia. Fokus utama dari proyek ini adalah meningkatkan **Robustness** sistem terhadap tantangan pada skenario *real-world*, seperti variasi pencahayaan, *shadow*, dan resolusi gambar yang rendah.
